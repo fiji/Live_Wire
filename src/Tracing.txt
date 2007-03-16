@@ -1,0 +1,19 @@
+macro "Unused Tool - C037" { }
+
+macro "LiveWire 1d Tool-C000D55D64D67D68D77D78D86D96Da2Db2Dc5Dd4C000D65D76Da6C000C111Dd3C111C222C333D57Db5Dc3C333C444D54D69D92Dc4C444D56D66D73C444C555D3bD4bD5aD6aD6bD7cD8dD9eDa5C555D63D82C555C666D79C666D72D87D93Da3Db3Db6Dc2C666C777D83C777C888D2aD2bC888C999D74D75D95Dd5C999CaaaCbbbCcccCdddCeeeCfff" {
+       getCursorLoc(x, y, z, flags);
+       run("LiveWire1DTool ", "x=" + x + " y=" + y + " z=" + z + " flags=" + flags);       
+}
+
+macro "LiveWire 2d Tool- C000D75D84D87D88D89D97D98Da6Db6Dc2Dd2De5Df4C000C111D85D96Dc6C111C222Df3C222C333D77Dd5De3C333C444D74Db2De4C444C555D1bD2aD2dD39D4eD5aD5eD6aD6eD76D79D7dD86D8cD93D9bC555Dc5C666D83D99Da2C666Dd6C666Da7C666C777D92Db3Dc3Dd3De2C777Da3C777C888C999D1aD1cD2cD3dD3eD49D4aD8aD8dD9aC999D94D95Db5Df5C999CaaaCbbbCcccCdddCeeeCfff" {
+       getCursorLoc(x, y, z, flags);
+       run("LiveWire2DTool ", "x=" + x + " y=" + y + " z=" + z + " flags=" + flags);       
+}
+
+macro 'LiveWire 2d Tool Options...' {
+       run("LiveWire2DTool ", "options");
+  }
+
+macro 'LiveWire 1d Tool Options...' {
+       run("LiveWire1DTool ", "options");
+  }
