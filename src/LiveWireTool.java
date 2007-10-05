@@ -15,22 +15,22 @@ public class LiveWireTool {
 	public static int getToolID() {
 		return toolID;
 	}
-
+	
 	public String kindSpecifier() {
 		return "line";
 	}
 	
 	public void run(String arg) {
+		String options = Macro.getOptions();
 		ImagePlus image = IJ.getImage();
 		LiveWire wire = null;
 		boolean hasLiveWire = false;
-		String options = Macro.getOptions();
 		int x = -1;
 		int y = -1;
 		if (options != null && !options.contains("x0") && !options.equals("options ")) {
-		 // called from toolsets macro, get x and y to set the first point 
-		 x = this.getXOption(options);
-		 y = this.getYOption(options);
+			// called from toolsets macro, get x and y to set the first point 
+			x = this.getXOption(options);
+			y = this.getYOption(options);
 		}
 		if (options != null && !options.contains("x0")) {
 			Macro.setOptions(null);
@@ -48,9 +48,14 @@ public class LiveWireTool {
 				}
 			}
 		}
-		if (options==null) {	// the plugin has been called directly, not from the macro or toolset macro
-			String path = IJ.getDirectory("macros")+"toolsets/"+"Tracing"+".txt";
-			new MacroInstaller().run(path);
+		if (options==null ) {	// the plugin has been called directly, not from the macro or toolset macro
+			boolean change = true;
+			if (this.isArea() && Toolbar.getToolId()==Toolbar.getInstance().getToolId("LiveWire 2d Tool")) change=false;
+			if (!this.isArea() && Toolbar.getToolId()==Toolbar.getInstance().getToolId("LiveWire 1d Tool")) change=false;
+			if (change) {
+				String path = IJ.getDirectory("macros")+"toolsets/"+"Tracing"+".txt";
+				new MacroInstaller().run(path);
+			}
 			int id = -1;
 			if (isArea()) id = Toolbar.getInstance().getToolId("LiveWire 2d Tool");
 			else id = Toolbar.getInstance().getToolId("LiveWire 1d Tool");
@@ -84,17 +89,5 @@ public class LiveWireTool {
 
 	public boolean isArea() {
 		return false;
-	}
-	
-	public void selectInToolbar() {
-		int LiveWireId = -1;
-		Toolbar toolbar = Toolbar.getInstance();
-		if (isArea()) LiveWireId = toolbar.getToolId("LiveWire 2d Tool");
-		else LiveWireId = toolbar.getToolId("LiveWire 1d Tool");
-		if(LiveWireId==-1){
-		    IJ.error("The LiveWire tool is not correctly installed. Please check that the file LiveWire.txt is in the folder macros/toolsets/livewire/");
-		    return; 
-		}		
-		toolbar.setTool(LiveWireId);
 	}
 }
