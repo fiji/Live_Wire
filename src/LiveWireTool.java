@@ -1,8 +1,6 @@
 import ij.IJ;
 import ij.ImagePlus;
 import ij.Macro;
-import ij.gui.Toolbar;
-import ij.plugin.MacroInstaller;
 
 import java.awt.event.MouseListener;
 
@@ -48,20 +46,8 @@ public class LiveWireTool {
 				}
 			}
 		}
-		if (options==null ) {	// the plugin has been called directly, not from the macro or toolset macro
-			boolean change = true;
-			if (this.isArea() && Toolbar.getToolId()==Toolbar.getInstance().getToolId("LiveWire 2d Tool")) change=false;
-			if (!this.isArea() && Toolbar.getToolId()==Toolbar.getInstance().getToolId("LiveWire 1d Tool")) change=false;
-			if (change) {
-				String path = IJ.getDirectory("macros")+"toolsets/"+"Tracing"+".txt";
-				new MacroInstaller().run(path);
-			}
-			int id = -1;
-			if (isArea()) id = Toolbar.getInstance().getToolId("LiveWire 2d Tool");
-			else id = Toolbar.getInstance().getToolId("LiveWire 1d Tool");
-			options = "";
-			IJ.setTool(id);
-		}
+		if (options==null) options = "";	// the plugin has been called directly, not from the macro or toolset macro
+											// do nothing
 		if (!hasLiveWire) {
 			wire = new LiveWire();
 			wire.setup(kindSpecifier(), image);
