@@ -20,7 +20,12 @@ public class LiveWireTool {
 	
 	public void run(String arg) {
 		String options = Macro.getOptions();
-		ImagePlus image = IJ.getImage();
+		if(options == null) {
+			IJ.error("Install the LiveWire Macro. Check plugin's README.txt for more info.");					    
+		    return;          
+		}
+		
+		ImagePlus image = IJ.getImage();		
 		LiveWire wire = null;
 		boolean hasLiveWire = false;
 		int x = -1;
@@ -56,7 +61,8 @@ public class LiveWireTool {
 		}
 		if (options.equals("options ")) {
 			wire.getFrame().setVisible(true);
-		}
+		}		
+		wire.getFrame().setVisible(true);
 	}
 
 	protected int getYOption(String options) {
