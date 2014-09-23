@@ -10,10 +10,6 @@
         <version>2.0.0-beta-0</version>
     </parent>
 
-    <properties>
-        <imglib2-ij.version>2.0.0-beta-26</imglib2-ij.version>
-    </properties>
-
     <groupId>sc.fiji</groupId>
     <artifactId>Live_Wire</artifactId>
     <version>1.0-SNAPSHOT</version>
@@ -22,8 +18,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>net.imglib2</groupId>
-            <artifactId>imglib2-ij</artifactId>
+            <groupId>net.imagej</groupId>
+            <artifactId>ij</artifactId>
         </dependency>
     </dependencies>
 
