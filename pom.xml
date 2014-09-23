@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>sc.fiji</groupId>
+        <artifactId>pom-fiji</artifactId>
+        <version>2.0.0-SNAPSHOT</version>
+    </parent>
+
+    <properties>
+        <imglib2-ij.version>2.0.0-beta-26</imglib2-ij.version>
+    </properties>
+
+    <groupId>de.mpi-cbg</groupId>
+    <artifactId>LiveWire</artifactId>
+    <version>1.0-SNAPSHOT</version>
+
+    <description>A Maven project for LiveWire for Fiji</description>
+
+    <dependencies>
+        <dependency>
+            <groupId>net.imglib2</groupId>
+            <artifactId>imglib2-ij</artifactId>
+        </dependency>
+    </dependencies>
+
+    <!-- NB: for project parent -->
+    <repositories>
+        <repository>
+            <id>imagej.releases</id>
+            <url>http://maven.imagej.net/content/repositories/releases</url>
+        </repository>
+        <repository>
+            <id>imagej.snapshots</id>
+            <url>http://maven.imagej.net/content/repositories/snapshots</url>
+        </repository>
+        <repository>
+            <id>central</id>
+            <name>Maven Repository Switchboard</name>
+            <layout>default</layout>
+            <url>http://repo1.maven.org/maven2</url>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
+
+    <name>plugins/LiveWire.jar</name>
+
+</project>
