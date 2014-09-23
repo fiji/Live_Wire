@@ -2,7 +2,6 @@ package livewire;
 
 import ij.IJ;
 import ij.ImagePlus;
-import ij.Macro;
 import ij.Prefs;
 import ij.WindowManager;
 import ij.gui.ERoi;
@@ -50,7 +49,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 	int width, height;
 	int state;
 	Toolbar oldToolbar;
-	static int LiveWireId;//id to hold new tool so that we won't select other tools
+	static int LiveWireId = 12;//id to hold new tool so that we won't select other tools
 	int roiType = Roi.FREELINE;
 
 	byte[] pixels;//image pixels
@@ -75,7 +74,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 	double pw;//exponential potence weight
 
 	ArrayList<Point> anchor;//stores anchor points
-	ArrayList<Integer> selIndex;//stores selection index to create new anchors in
+	ArrayList<Integer> selIndex;//stores selection index to create new anchors in 
 	//between points and move them
 
 	protected static Cursor defaultCursor = new Cursor(Cursor.DEFAULT_CURSOR);
@@ -85,6 +84,13 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 
 	protected boolean isArea = false;
 	private MouseEvent lastEvent;
+
+	private int x, y;
+
+	public void setXY(int x, int y) {
+		this.x = x;
+		this.y = y;
+	}
 
 	public int setup(String arg, ImagePlus imp) {
 		this.img = imp;
@@ -101,29 +107,13 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 
 	public void run(ImageProcessor ip) {
 
-		//check IJ version
-		if (IJ.versionLessThan("1.37r")) {
-			IJ.showMessage("This plugin might not work with older versions of ImageJ\n" +
-							"You should update your ImageJ to at least 1.37r\n" +
-							"It also requires Java 1.5 \n" +
-							"Just visit http://rsb.info.nih.gov/ij/upgrade/ and " +
-							"download the ij.jar file"
-			);
-		}
-
-		//		test Macro
-		// make sure we grab the parameters before any other macro is run, 
-		// like the one that converts to grayscale
-		String arg = Macro.getOptions();
-
 		initialize(ip);
 
-		if (arg != null) {
-			createLiveWireFromMacro(ip, arg);
-			return;
-		}
+		//x0=50 y0=30 x1=95 y1=95 magnitude=43 direction=13 exponential=30 power=10
+		String arg = "x0=" + x + " y0=" + y + " x1=0 y1=0 magnitude=43 direction=13 exponential=30 power=10";
+		createLiveWireFromMacro(ip, arg);
 
-		//create Window for parameters		
+		//create Window for parameters
 		createWindow();
 
 		//remove old mouse listeners
@@ -139,10 +129,6 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 		win.removeWindowListener(this);
 		win.addWindowListener(this);
 
-		if (isArea)
-			LiveWireId = Toolbar.getInstance().getToolId("LiveWire 2d Tool");
-		else
-			LiveWireId = Toolbar.getInstance().getToolId("LiveWire 1d Tool");
 	}
 
 	private void createLiveWireFromMacro(ImageProcessor ip, String arg) {
@@ -387,7 +373,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 		frame.getContentPane().add(dLabel);
 		frame.getContentPane().add(dSlider);
 		frame.getContentPane().add(bUpdate);
-
+		
                 
         /*org.jdesktop.layout.GroupLayout layout = new org.jdesktop.layout.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -584,7 +570,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 			int[] tsely = new int[height * width];//temporary y selection
 			int count = 0;
 
-			//for handle one, put at least one point, else nothing will appear from the
+			//for handle one, put at least one point, else nothing will appear from the 
 			//initial handle to this
 /*				if(myHandle==1){
 					tselx[count]=selx[0];
@@ -669,7 +655,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 				selIndex.set(i, initialCount);
 			}
 
-			//				for last handle, put at least one point, else nothing will appear from the
+			//				for last handle, put at least one point, else nothing will appear from the 
 			//initial handle to this
 				/*if(myHandle==selIndex.size()-2){
 					tselx[count]=selx[selSize-1];
@@ -689,7 +675,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 			selIndex.set(selIndex.size() - 1, count);
 
 			count++;
-			//copies to original selection
+			//copies to original selection				
 			for (int i = 0; i < count; i++) {
 				selx[i] = tselx[i];
 				sely[i] = tsely[i];
@@ -776,7 +762,7 @@ public class LiveWire implements PlugInFilter, MouseListener, MouseMotionListene
 						count++;
 					}
 				}
-				//				for last handle, put at least one point, else nothing will appear from the
+				//				for last handle, put at least one point, else nothing will appear from the 
 				//initial handle to this
 				if (myHandle == selIndex.size() - 2) {
 					tselx[count] = selx[selSize - 1];
