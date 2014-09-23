@@ -15,7 +15,7 @@
     </properties>
 
     <groupId>sc.fiji</groupId>
-    <artifactId>LiveWire</artifactId>
+    <artifactId>Live_Wire</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <description>A Maven project for LiveWire for Fiji</description>
@@ -49,6 +49,6 @@
     </repositories>
 
 
-    <name>plugins/LiveWire.jar</name>
+    <name>plugins/Live_Wire.jar</name>
 
 </project>

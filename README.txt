@@ -2,7 +2,7 @@
 http://ivussnakes.sourceforge.net/
 
 INSTALLATION
-Just make .jar and put LiveWire.jar into Fiji plugins folder.
+Just make .jar and put Live_Wire.jar into Fiji plugins folder.
 
 
 NEW FEATURES
