@@ -16,10 +16,22 @@
 
     <description>A Maven project for LiveWire for Fiji</description>
 
+    <properties>
+      <!-- Remove after upgrading from pom-fiji:2.0.0-beta-0 -->
+      <fiji-lib.version>2.0.1</fiji-lib.version>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>net.imagej</groupId>
             <artifactId>ij</artifactId>
+        </dependency>
+
+        <!-- Test-scope dependencies -->
+        <dependency>
+            <groupId>sc.fiji</groupId>
+            <artifactId>fiji-lib</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
