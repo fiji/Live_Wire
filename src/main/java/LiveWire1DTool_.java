@@ -6,9 +6,6 @@ import ij.plugin.PlugIn;
 
 public class LiveWire1DTool_ extends LiveWireTool implements PlugIn {
 
-	public LiveWire1DTool_() {
-	}
-
 	public static void main(final String[] args) {
 		// set the plugins.dir property to make the plugin appear in the Plugins menu
 		final Class<?> clazz = LiveWire1DTool_.class;

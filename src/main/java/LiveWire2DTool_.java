@@ -6,9 +6,6 @@ import ij.plugin.PlugIn;
 
 public class LiveWire2DTool_ extends LiveWireTool implements PlugIn {
 
-	public LiveWire2DTool_() {
-	}
-
 	public String kindSpecifier() {
 		return "area";
 	}
