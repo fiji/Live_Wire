@@ -1,16 +1,8 @@
 ﻿OFFICIAL PAGE
 http://ivussnakes.sourceforge.net/
 
-INSTALATION
-This is a tool to be used inside ImageJ.
-These installation instructions have been tried with ImageJ 1.41o
-To install it, extract the jar (using your favorite extractor) to the folder "ImageJ/plugins/Tools"
-Notice that the CONTENTS of the jar must be in the directory "ImageJ/plugins/Tools" and not "ImageJ/plugins/Tools/LiveWire/".
-So, you will see the plugins in places like "ImageJ/plugins/Tools/LiveWire1DTool_.class".
-Then, you need to install the LiveWire buttons through a macro.
-This is simple. Start ImageJ then, go to "Plugins->Macro>Install...". Point to the extracted file:
-"ImageJ/plugins/Tools/LiveWire.txt". This will install the LiveWire buttons to ImageJ toolbar.
-
+INSTALLATION
+Just make .jar and put LiveWire.jar into Fiji plugins folder.
 
 
 NEW FEATURES
