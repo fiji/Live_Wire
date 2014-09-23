@@ -13,19 +13,19 @@ public class LiveWireTool {
 	public static int getToolID() {
 		return toolID;
 	}
-	
+
 	public String kindSpecifier() {
 		return "line";
 	}
-	
+
 	public void run(String arg) {
 		String options = Macro.getOptions();
-		if(options == null) {
-			IJ.error("Install the LiveWire Macro. Check plugin's README.txt for more info.");					    
-		    return;          
+		if (options == null) {
+			IJ.error("Install the LiveWire Macro. Check plugin's README.txt for more info.");
+			return;
 		}
-		
-		ImagePlus image = IJ.getImage();		
+
+		ImagePlus image = IJ.getImage();
 		LiveWire wire = null;
 		boolean hasLiveWire = false;
 		int x = -1;
@@ -39,10 +39,10 @@ public class LiveWireTool {
 			Macro.setOptions(null);
 		}
 		MouseListener[] listener = image.getCanvas().getMouseListeners();
-		for (int i=0; i<listener.length; i++) {
-			if (listener[i].getClass().getName().contains("LiveWire")){
+		for (int i = 0; i < listener.length; i++) {
+			if (listener[i].getClass().getName().contains("LiveWire")) {
 				wire = (LiveWire) listener[i];
-				hasLiveWire=true;
+				hasLiveWire = true;
 				if (wire.isArea() && !this.isArea() || !wire.isArea() && this.isArea()) {
 					image.getCanvas().removeMouseListener(wire);
 					image.getCanvas().removeMouseMotionListener(wire);
@@ -51,17 +51,19 @@ public class LiveWireTool {
 				}
 			}
 		}
-		if (options==null) options = "";	// the plugin has been called directly, not from the macro or toolset macro
-											// do nothing
+		if (options == null)
+			options = "";    // the plugin has been called directly, not from the macro or toolset macro
+		// do nothing
 		if (!hasLiveWire) {
 			wire = new LiveWire();
 			wire.setup(kindSpecifier(), image);
 			wire.run(image.getProcessor());
-			if (x!=-1) wire.handleMouseButton1Pressed(x, y);
+			if (x != -1)
+				wire.handleMouseButton1Pressed(x, y);
 		}
 		if (options.equals("options ")) {
 			wire.getFrame().setVisible(true);
-		}		
+		}
 		wire.getFrame().setVisible(true);
 	}
 
